@@ -1,8 +1,12 @@
 [package]
-name = "PEx-5"
+name = "peanut-brulee-rs"
 version = "0.1.0"
 edition = "2021"
-
+authors = ["K@rb0n1t3 prismgamenetwork@gmail.com"]
+description = "a horribly coded cryptocurrency"
+license = "MIT"
+repository = "https://github.com/shkrnm/peanut-brulee-rs"
+readme = "README.md"
 [dependencies]
 sha2 = "0.10"
 chrono = "0.4"
