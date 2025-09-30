@@ -1,6 +1,8 @@
 mod user;
 mod wallet;
 
+//Do you play DELTARUNE yet? If you don't you should!
+
 use chrono::prelude::*;
 use sha2::{Sha256, Digest};
 use std::collections::{HashMap, HashSet};
@@ -66,7 +68,7 @@ fn main() {
     let mut blockchain = vec![create_genesis_block()];
     let mut balances: HashMap<String, u64> = HashMap::new();
 
-    println!("🔗 Welcome to PeanutChain CLI");
+    println!("Welcome to peanut-brulee-rs CLI");
     println!("Commands: `new`, `list`, `send <from> <to> <amount>`, `chain`, `known`, `exit`");
 
     loop {
@@ -81,12 +83,12 @@ fn main() {
             ["new"] => {
                 let addr = wallet.create_account();
                 balances.insert(addr.clone(), 0);
-                println!("🆕 New account created: {}", addr);
+                println!("New account created: {}", addr);
             }
             ["list"] => {
                 for addr in wallet.list_addresses() {
                     let bal = balances.get(&addr).unwrap_or(&0);
-                    println!("🔐 {} | Balance: {}", addr, bal);
+                    println!("{} | Balance: {}", addr, bal);
                 }
             }
             ["send", from, to, amount_str] => {
@@ -102,15 +104,15 @@ fn main() {
                                 amount,
                             };
                             add_block(&mut blockchain, vec![tx]);
-                            println!("✅ Sent {} from {} to {}", amount, from, to);
+                            println!("Sent {} from {} to {}", amount, from, to);
                         } else {
-                            println!("❌ Insufficient balance.");
+                            println!("Insufficient balance.");
                         }
                     } else {
-                        println!("❌ Sender not found.");
+                        println!("Sender not found.");
                     }
                 } else {
-                    println!("❌ Invalid amount.");
+                    println!("Invalid amount.");
                 }
             }
             ["chain"] => {
@@ -122,15 +124,15 @@ fn main() {
                 let all = get_all_addresses(&blockchain);
                 for addr in all {
                     let bal = balances.get(&addr).unwrap_or(&0);
-                    println!("🌍 {} | Balance: {}", addr, bal);
+                    println!("{} | Balance: {}", addr, bal);
                 }
             }
             ["exit"] => {
-                println!("👋 Goodbye.");
+                println!("Goodbye.");
                 break;
             }
             _ => {
-                println!("❓ Unknown command.");
+                println!("Unknown command.");
             }
         }
     }
